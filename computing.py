@@ -1,11 +1,11 @@
 from validation import Validator
 
 class Mover:
-    def __init__(self, data, inpt):
+    def __init__(self, data, inpt, mode):
         self.data = data
         self.inpt = inpt
-        self.tape = list(input)
-        self.validator = Validator()
+        self.tape = list(inpt)
+        self.mode = mode
         self.head = 10
         for _ in range(self.head):
             self.tape.insert(0, data["blank"])
@@ -30,14 +30,14 @@ class Mover:
                 print_tape.pop()
             for _ in range(self.head - 9):
                 print_tape.pop(0)
-            if self.validator.mode == "print":
+            if self.mode == "print":
                 print(f"[{''.join(print_tape)}] ({self.state}, {self.head - 10}:{self.tape[self.head]}) -> ", end="")
 
             check = next((x for x in self.data["transitions"][self.state] if x["read"] == self.tape[self.head]), None)
             if check is None:
                 print("No transition for this state and this char")
                 return -1
-            if self.validator.mode == "print":
+            if self.mode == "print":
                 print(f"({check['to_state']}, {check['write']}, {check['action']})")
             self.tape[self.head] = check["write"]
             if check["action"] == "RIGHT":
@@ -45,17 +45,16 @@ class Mover:
             elif check["action"] == "LEFT":
                 self.head -= 1
             self.state = check["to_state"]
-            return 0
+        return 0
 
     def computing(self):
-        if self.compute_state() == -1:
-            return -1
+        self.compute_state()
         while (self.tape[0] == self.data["blank"] and len(self.tape) > 1):
             self.tape.pop(0)
         while (self.tape[-1] == self.data["blank"] and len(self.tape) > 1):
             self.tape.pop()
-        if self.validator.mode == "print":
-            print("[{}] in {} steps".format("".join(self.tape), self.steps))
-        if (self.validator.mode == "sample"):
+        if self.mode == "print":
+            print(f"[{''.join(self.tape)}] in {self.steps} steps")
+        if (self.mode == "sample"):
             return self.steps
         return 0

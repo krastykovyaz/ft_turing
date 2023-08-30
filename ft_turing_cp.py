@@ -3,12 +3,13 @@ from validation import Validator
 from printing import Printer
 from computing import Mover
 
-def ft_turing():
+def ft_turing(argv1, argv2, mode='print'):
+    validator = Validator(argv1, argv2,mode)
     data, inpt = validator.check_keys()
-    printer = Printer(data)
-    printer.draw()
-    mover = Mover()
-    mover.compute_state()
+
+    Printer(data)
+    mover = Mover(data, inpt, validator.mode)
+    return mover.computing()
 
 
 if __name__=='__main__':
@@ -16,5 +17,4 @@ if __name__=='__main__':
         print(
             "usage: ft_turing [-h] jsonfile input\n\npositional arguments:\n\tjsonfile\tjson description of the machine\n\n\tinput\t\tinput of the machine\n\noptional arguments:\n\t-h, --help\tshow this help message and exit")
         sys.exit(0)
-    validator = Validator(sys.argv)
-    print(ft_turing())
+    ft_turing(sys.argv[1], sys.argv[2])

@@ -16,5 +16,5 @@ class Printer:
         for state in self.data["states"]:
             if state not in self.data["finals"]:
                 for step in self.data["transitions"][state]:
-                    print(f"({state}, {step['read']}) -> ({step['to_state']}, {step['write']}, {step['action']}")
+                    print(f"({state}, {step['read']}) -> ({step['to_state']}, {step['write']}, {step['action']})")
         print("*" * 80)
