@@ -16,14 +16,7 @@ class Notation:
                          config.COLOR_NOTATION[notation](self.x_coords), \
                          color=self.colors[i], \
                          label=notation)
-        # ax.set_xlabel('Elements')
-        # ax.set_xlim([0, 100])
-        # ax.set_ylabel('Operations')
-        # ax.set_ylim([0, 1000])
-        # ax.set_title('Big-O Complexity Chart')
-        # plt.legend(loc='upper right')
-        # plt.grid(axis='y')
-        # plt.show()
+
 
 if __name__=='__main__':
     fig = plt.figure()
@@ -32,4 +25,12 @@ if __name__=='__main__':
     x_coords = [x for x in range(1, 101)]
     note = Notation(ax, x_coords)
     note.plot_notations()
+    ax.set_xlabel('Elements')
+    ax.set_xlim([0, 100])
+    ax.set_ylabel('Operations')
+    ax.set_ylim([0, 1000])
+    ax.set_title('Big-O Complexity')
+    plt.legend(loc='upper right')
+    plt.grid(axis='y')
+    plt.show()
 

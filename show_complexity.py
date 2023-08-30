@@ -1,5 +1,5 @@
-import numpy as np
-from ft_turing_cp import ft_turing
+
+from ft_turing import ft_turing
 import matplotlib.pyplot as plt
 from notation_image import Notation
 
@@ -39,7 +39,7 @@ def find_complexity():
     ax.set_xlim([0, 100])
     ax.set_ylabel('Operations')
     ax.set_ylim([0, 1000])
-    ax.set_title('Big-O Complexity Chart')
+    ax.set_title('Big-O Complexity')
     plt.legend(loc='upper right')
     plt.grid(axis='y')
     plt.show()

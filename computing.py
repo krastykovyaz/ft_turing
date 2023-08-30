@@ -1,4 +1,4 @@
-from validation import Validator
+
 
 class Mover:
     def __init__(self, data, inpt, mode):
