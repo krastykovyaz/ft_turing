@@ -1,9 +1,16 @@
+"""module for output logouts"""
 class Printer:
+    """
+    class for printing
+    """
     def __init__(self, data):
         self.data = data
         self.draw()
 
     def draw(self):
+        """
+        function for print outputs
+        """
         print("*" * 80)
         print("*" + " " * 78 + "*")
         print("*{:^78}*".format(self.data["name"]))

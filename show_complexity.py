@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 from notation_image import Notation
 
 def find_complexity():
-
+    """
+    functions for plotting notation of json inputs
+    """
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
 

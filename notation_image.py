@@ -1,9 +1,13 @@
+"""module for create plots for other notations"""
 import settings as config
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import random
 
 class Notation:
+    """
+    init coordinates, colors
+    """
     def __init__(self, ax, x_coords):
         self.ax = ax
         self.x_coords = x_coords
@@ -11,6 +15,9 @@ class Notation:
         random.shuffle(self.colors)
         
     def plot_notations(self):
+        """
+        function for cycle over notations
+        """
         for i, notation in enumerate(config.COLOR_NOTATION):
             self.ax.plot(self.x_coords, \
                          config.COLOR_NOTATION[notation](self.x_coords), \

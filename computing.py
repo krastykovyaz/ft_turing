@@ -1,6 +1,9 @@
-
+'''module for algorithm'''
 
 class Mover:
+    '''
+        action class
+    '''
     def __init__(self, data, inpt, mode):
         self.data = data
         self.inpt = inpt
@@ -16,7 +19,10 @@ class Mover:
         self.steps = 0
 
 
-    def compute_state(self):
+    def compute_state(self)->None:
+        """
+        calculate by the condition in the json
+        """
         while self.state not in self.data["finals"]:
             self.steps += 1
             print_tape = list(self.tape)
@@ -32,10 +38,9 @@ class Mover:
                 print_tape.pop(0)
             if self.mode == "print":
                 print(f"[{''.join(print_tape)}] ({self.state}, {self.head - 10}:{self.tape[self.head]}) -> ", end="")
-
             check = next((x for x in self.data["transitions"][self.state] if x["read"] == self.tape[self.head]), None)
             if check is None:
-                print("No transition for this state and this char")
+                print("No transition for state and char")
                 return -1
             if self.mode == "print":
                 print(f"({check['to_state']}, {check['write']}, {check['action']})")
@@ -45,9 +50,12 @@ class Mover:
             elif check["action"] == "LEFT":
                 self.head -= 1
             self.state = check["to_state"]
-        return 0
+        # return 0
 
-    def computing(self):
+    def computing(self)->int:
+        """
+        get steps in the blank
+        """
         self.compute_state()
         while (self.tape[0] == self.data["blank"] and len(self.tape) > 1):
             self.tape.pop(0)

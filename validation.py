@@ -1,8 +1,13 @@
+"""Module for checking is valid input data"""
 import sys
 import json
 import settings as config
+from typing import Tuple
 
 class Validator:
+    """
+    class for validate file and input
+    """
     def __init__(self, argument1, argument2, mode="print"):
         self.args = (argument1, argument2, mode)
         with open("./" + argument1, 'r') as jf:
@@ -11,7 +16,10 @@ class Validator:
         self.mode = mode
 
 
-    def check_keys(self):
+    def check_keys(self)->Tuple[json,json]:
+        """
+        check content of jsons
+        """
         self.check_input()
         try:
             assert len(self.data.keys()) == len(config.JSON_KEYS) , "unknown key"
@@ -48,7 +56,10 @@ class Validator:
 
 
 
-    def check_input(self):
+    def check_input(self)->None:
+        """
+        function for validate input
+        """
         try:
             assert len(self.args) == 3, "Wrong number of arguments"
             assert isinstance(self.args[1], str), "jsonfile must be a string"
@@ -58,7 +69,8 @@ class Validator:
             print("Error: " + error.__str__())
             sys.exit(0)
 
-    def raise_error(self, st, end, param):
+    def raise_error(self, st:int, end:int, param:str)->None:
+        """throw the error if trigger"""
         try:
             assert st != -1, f"{param} set for value in input but no value"
             assert end != -1, f"{param} set for value in input but no value"
@@ -67,7 +79,10 @@ class Validator:
                 print("Error: " + error.__str__())
             sys.exit(0)
 
-    def fill_input(self):
+    def fill_input(self)->None:
+        """
+        validate input keys
+        """
         for key in ["alphabet", "states", "transitions"]:
             if type(self.data[key]) == str and f"<{key}>" == self.data[key]:
                 start = self.inpt.find(f"<{key}=") + config.STATES_DICT[key]
@@ -78,7 +93,10 @@ class Validator:
         # return self.inpt
 
 
-    def check_steps(self, state):
+    def check_steps(self, state:str)->None:
+        """
+        run over keys in data
+        """
         assert len(self.data["transitions"][state].keys()) == len(config.JSON_STATES), "unknown key in states"
         for key in self.data.keys():
             assert key in self.data, f"{key} missed in states"
