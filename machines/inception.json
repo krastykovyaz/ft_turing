@@ -1,0 +1,11 @@
+{
+    "name": "inception",
+    "alphabet": "<alphabet>",
+    "blank": ".",
+    "states": "<states>",
+    "initial": "move_to_plus",
+    "finals": [
+        "HALT"
+    ],
+    "transitions": "<transitions>"
+}

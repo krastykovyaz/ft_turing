@@ -1,0 +1,32 @@
+{
+    "name": "infinite_loop",
+    "alphabet": [
+        "0",
+        "."
+    ],
+    "blank": ".",
+    "states": [
+        "right",
+        "HALT"
+    ],
+    "initial": "right",
+    "finals": [
+        "HALT"
+    ],
+    "transitions": {
+        "right": [
+            {
+                "read": "0",
+                "to_state": "right",
+                "write": "0",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "right",
+                "write": ".",
+                "action": "LEFT"
+            }
+        ]
+    }
+}
