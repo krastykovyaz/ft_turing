@@ -2,7 +2,7 @@
 import sys
 import json
 import settings as config
-from typing import Tuple
+from typing import Tuple, Dict
 
 class Validator:
     """
@@ -16,7 +16,7 @@ class Validator:
         self.mode = mode
 
 
-    def check_keys(self)->Tuple[json,json]:
+    def check_keys(self)->Tuple[Dict,Dict]:
         """
         check content of jsons
         """
